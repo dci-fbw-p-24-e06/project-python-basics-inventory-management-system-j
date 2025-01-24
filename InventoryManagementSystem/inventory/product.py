@@ -41,3 +41,36 @@ if __name__ == "__main__":
     product.update_price(950)
     print("\nAfter updating the price:")
     print(product.get_product_info())
+
+Items = [
+    {
+        "name": "Toshiba",
+        "description": "Laptop with 16GB RAM",
+        "sku": "SKU0001",
+        "quantity": 400,
+        "unitPrice": 100,
+        "purchasePrice": 80,
+        "profit_rate": 20,
+        "currency": "EUR",
+    },
+    {
+        "name": "applebook",
+        "description": "Laptop with 8GB RAM",
+        "sku": "SKU0002",
+        "quantity": 7000,
+        "unitPrice": 20,
+        "purchasePrice": 15,
+        "profit_rate": 25,
+        "currency": "EUR",
+    },
+    {
+        "name": "macbook pro 2020",
+        "description": "Laptop with 16GB RAM",
+        "sku": "SKU0003",
+        "quantity": 700,
+        "unitPrice": 2000,
+        "purchasePrice": 1500,
+        "profit_rate": 25,
+        "currency": "EUR",
+    },
+]
