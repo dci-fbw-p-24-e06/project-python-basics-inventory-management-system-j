@@ -1,31 +1,54 @@
-from product import Items
+# inventory/inventory_manager.py
+
+from .product import Product
 
 class InventoryManager:
-    def find_product(self, items):
-        
-        product_name = input('Enter the name of the product you want to find: ')
-        for item in items: 
-            if item['name'] == product_name:
-                return item  
-        return "Sold out"
+    def __init__(self):
+        self.inventory = {}
 
-inventory_manager = InventoryManager()
+    def add_product(self, product):
+        """Add a product to the inventory."""
+        if product.sku in self.inventory:
+            print(f"Product '{product.name}' with SKU '{product.sku}' already exists.")
+        else:
+            self.inventory[product.sku] = product
+            print(f"Product '{product.name}' added to inventory.")
 
-result = inventory_manager.find_product(Items)
+    def remove_product(self, sku):
+        """Remove a product from the inventory."""
+        if sku in self.inventory:
+            del self.inventory[sku]
+            print(f"Product with SKU '{sku}' removed from inventory.")
+        else:
+            print(f"Product with SKU '{sku}' not found.")
 
-if result != "Sorry, Sold out":
-    print(f"Product found: {result}")
-else:
-    print(result)  
+    def update_product_quantity(self, sku, new_quantity):
+        """Update the quantity of an existing product."""
+        if sku in self.inventory:
+            self.inventory[sku].update_quantity(new_quantity)
+            print(f"Product with SKU '{sku}' quantity updated to {new_quantity}.")
+        else:
+            print(f"Product with SKU '{sku}' not found.")
 
+    def get_product_info(self, sku):
+        """Retrieve product information by SKU."""
+        if sku in self.inventory:
+            return self.inventory[sku].get_product_info()
+        else:
+            return f"Product with SKU '{sku}' not found."
 
-def get_total_inventory_value(items):
-    total_items_price = 0
-    for item in Items:
-        price_to_use = item['purchasePrice'] if 'purchasePrice' in item else item['unitPrice']
-        total_items_price += item['quantity'] * price_to_use
-    
-    return total_items_price
+    def get_total_inventory_value(self):
+        """Calculate the total inventory value by summing up all products' values."""
+        total_value = sum(product.unit_price * product.quantity for product in self.inventory.values())
+        return total_value
 
-total_items_value = get_total_inventory_value(Items)
-print(f'Total value of all available products: {total_items_value} EUR')
+    def search_product(self, search_term):
+        """Search for a product by SKU or name."""
+        results = []
+        for product in self.inventory.values():
+            if search_term.lower() in product.name.lower() or search_term.lower() in product.sku.lower():
+                results.append(product.get_product_info())
+        if results:
+            return "\n\n".join(results)
+        else:
+            return "No products found matching your search."

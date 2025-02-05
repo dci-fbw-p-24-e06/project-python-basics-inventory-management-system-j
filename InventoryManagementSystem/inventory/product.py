@@ -1,10 +1,13 @@
-# product.py
-
 class Product:
-    def __init__(self, name, price, quantity):
+    def __init__(self, name, description, sku, quantity, unit_price, purchase_price, profit_rate, currency):
         self.name = name
-        self.price = price
+        self.description = description
+        self.sku = sku
         self.quantity = quantity
+        self.unit_price = unit_price
+        self.purchase_price = purchase_price
+        self.profit_rate = profit_rate
+        self.currency = currency
 
     # Method to update the quantity of the product
     def update_quantity(self, new_quantity):
@@ -16,61 +19,21 @@ class Product:
     # Method to update the price of the product
     def update_price(self, new_price):
         if new_price >= 0:
-            self.price = new_price
+            self.unit_price = new_price
         else:
             print("Price cannot be negative.")
 
+    # Method to calculate profit
+    def calculate_profit(self):
+        return (self.unit_price - self.purchase_price) * self.quantity
+
     # Method to get a string representation of the product's information
     def get_product_info(self):
-        return f"Product: {self.name}\nPrice: {self.price} USD\nQuantity: {self.quantity}"
-
-# Example usage of the class:
-if __name__ == "__main__":
-    # Create a product
-    product = Product("Laptop", 1000, 5)
-
-    # Display product information
-    print(product.get_product_info())
-
-    # Update the product's quantity
-    product.update_quantity(10)
-    print("\nAfter updating the quantity:")
-    print(product.get_product_info())
-
-    # Update the product's price
-    product.update_price(950)
-    print("\nAfter updating the price:")
-    print(product.get_product_info())
-
-Items = [
-    {
-        "name": "Toshiba",
-        "description": "Laptop with 16GB RAM",
-        "sku": "SKU0001",
-        "quantity": 400,
-        "unitPrice": 100,
-        "purchasePrice": 80,
-        "profit_rate": 20,
-        "currency": "EUR",
-    },
-    {
-        "name": "applebook",
-        "description": "Laptop with 8GB RAM",
-        "sku": "SKU0002",
-        "quantity": 7000,
-        "unitPrice": 20,
-        "purchasePrice": 15,
-        "profit_rate": 25,
-        "currency": "EUR",
-    },
-    {
-        "name": "macbook pro 2020",
-        "description": "Laptop with 16GB RAM",
-        "sku": "SKU0003",
-        "quantity": 700,
-        "unitPrice": 2000,
-        "purchasePrice": 1500,
-        "profit_rate": 25,
-        "currency": "EUR",
-    },
-]
+        return (f"Product: {self.name}\n"
+                f"Description: {self.description}\n"
+                f"SKU: {self.sku}\n"
+                f"Quantity: {self.quantity}\n"
+                f"Unit Price: {self.unit_price} {self.currency}\n"
+                f"Purchase Price: {self.purchase_price} {self.currency}\n"
+                f"Profit Rate: {self.profit_rate}%\n"
+                f"Total Profit: {self.calculate_profit()} {self.currency}")
