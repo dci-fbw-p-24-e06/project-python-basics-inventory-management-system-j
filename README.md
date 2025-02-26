@@ -80,7 +80,7 @@ InventoryManagementSystem/
            - The `ExternalService` class simulates an external service, such as logging or notification functionality, in the `inventory_manager.py` (Call the external service to log the addition of the product)
            - Use mocking to test add_product_with_logging and `get_total_inventory_value`.
            
-           (you can watch this video for getting an idea: https://www.youtube.com/watch?v=xT4SV7AH3G8 (please do not worry, in future we will learn more about API)
+           (you can watch this video for getting an idea: https://www.youtube.com/watch?v=xT4SV7AH3G8 (please do not worry, in future we will learn more about API))
 
 Remember to write clean and readable code, follow best practices, and document your code using comments to make it more understandable for yourself and others who may review or maintain it in the future. 
 By completing this exercise, you will gain hands-on experience in implementing unit tests using unittest and applying mocking techniques to isolate dependencies for testing. 

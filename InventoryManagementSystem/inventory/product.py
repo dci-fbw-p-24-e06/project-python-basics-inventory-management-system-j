@@ -29,11 +29,15 @@ class Product:
 
     # Method to get a string representation of the product's information
     def get_product_info(self):
-        return (f"Product: {self.name}\n"
-                f"Description: {self.description}\n"
-                f"SKU: {self.sku}\n"
-                f"Quantity: {self.quantity}\n"
-                f"Unit Price: {self.unit_price} {self.currency}\n"
-                f"Purchase Price: {self.purchase_price} {self.currency}\n"
-                f"Profit Rate: {self.profit_rate}%\n"
-                f"Total Profit: {self.calculate_profit()} {self.currency}")
+        return f"Name: {self.name}, SKU: {self.sku}, Preis: {self.unit_price} {self.currency}, Lagerbestand: {self.quantity}"
+    
+def get_total_inventory_value(self):
+    """Berechnen Sie den Gesamtbestandswert, indem Sie die Werte aller Produkte addieren."""
+    if not self.inventory:
+        print("Das Inventar ist leer!")
+        return 0  # Gibt 0 zurück, wenn das Inventar leer ist
+
+    total_value = sum(product.unit_price * product.quantity for product in self.inventory.values())
+    
+    print(f"Gesamtwert des Inventars: {total_value} {self.inventory.get(next(iter(self.inventory)))}")  # Debug-Ausgabe
+    return total_value

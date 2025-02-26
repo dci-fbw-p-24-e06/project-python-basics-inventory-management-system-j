@@ -63,10 +63,14 @@ class InventoryManager:
             products_data = []
             for product in self.inventory.values():
                 product_data = {
-                    'name': product.name,
-                    'sku': product.sku,
-                    'price': product.unit_price,
-                    'quantity': product.quantity
+                'name': product.name,
+                'description': product.description, 
+                'sku': product.sku,
+                'quantity': product.quantity,
+                'unit_price': product.unit_price,
+                'purchase_price': product.purchase_price, 
+                'profit_rate': product.profit_rate,  
+                'currency': product.currency  
                 }
                 products_data.append(product_data)
             json.dump(products_data, file, indent=4)
@@ -75,17 +79,39 @@ class InventoryManager:
         """Laden Sie das Inventar aus der JSON-Datei."""
         try:
             with open(self.file_name, 'r') as file:
-                # Wenn die Datei leer ist, erhalten wir eine leere Liste
-                products_data = json.load(file)
+            # Überprüfen, ob die Datei leer ist
+                file_content = file.read().strip()
+                if not file_content:  # Falls die Datei leer ist
+                    print(f"Die Datei '{self.file_name}' ist leer. Keine Produkte zum Laden.")
+                    return
+
+            # Wenn die Datei nicht leer ist, laden wir die Daten
+                products_data = json.loads(file_content)
+            
                 for prod_data in products_data:
-                    product = Product(prod_data['name'], prod_data['description'], prod_data['sku'],
-                                      prod_data['quantity'], prod_data['price'], prod_data['purchase_price'],
-                                      prod_data['profit_rate'], prod_data['currency'])
-                    self.inventory[product.sku] = product
+                    try:
+                        product = Product(
+                            prod_data['name'],
+                            prod_data['description'],
+                            prod_data['sku'],
+                            prod_data['quantity'],
+                            prod_data['unit_price'],
+                            prod_data['purchase_price'],
+                            prod_data['profit_rate'],
+                            prod_data['currency']
+                        )
+                        self.inventory[product.sku] = product
+                    except KeyError as e:
+                        print(f"Fehlender Schlüssel in den Produktdaten: {e}")
+                    except Exception as e:
+                        print(f"Fehler beim Laden eines Produkts: {e}")
+
         except FileNotFoundError:
-            # Wenn die Datei nicht existiert, erstellen wir eine leere Datei
+        # Wenn die Datei nicht existiert, erstellen wir eine leere Datei
             print(f"Keine vorherigen Bestandsdaten gefunden, starte neu. Erstelle '{self.file_name}'.")
             with open(self.file_name, 'w') as file:
                 json.dump([], file)  # Erstelle eine leere JSON-Datei
         except json.JSONDecodeError:
             print("Fehler beim Dekodieren der JSON-Datei. Möglicherweise ist die Datei beschädigt oder enthält ungültige Daten.")
+        except Exception as e:
+            print(f"Unbekannter Fehler beim Laden der Datei: {e}")
