@@ -22,7 +22,7 @@ class TestInventoryManager(unittest.TestCase):
         product = Product("Laptop", "Description", "SKU123", 10, 1000, 800, 20, "EUR")
         self.inventory_manager.add_product(product)
         product_info = self.inventory_manager.get_product_info("SKU123")
-        self.assertIn("Product: Laptop", product_info)
+        self.assertIn("Name: Laptop", product_info)
 
     def test_total_inventory_value(self):
         product1 = Product("Laptop", "Description", "SKU123", 10, 1000, 800, 20, "EUR")

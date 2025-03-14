@@ -1,117 +1,118 @@
 import json
+import os
 from .product import Product
 
 class InventoryManager:
-    def __init__(self, file_name='inventory.json'):
+    def __init__(self, file_name=os.path.join("..", "inventory.json")):
         self.inventory = {}
         self.file_name = file_name
-        self.load_inventory()  # Beim Starten wird das Inventar geladen
+        print(f"Inventory file path set to: {self.file_name}")
+        print(f"Absolute path: {os.path.abspath(self.file_name)}")
+        self.load_inventory()
 
+    # Der Rest der Klasse bleibt unverändert
     def add_product(self, product):
-        """Fügen Sie ein Produkt zum Inventar hinzu."""
+        """Add a product to the inventory."""
         if product.sku in self.inventory:
-            print(f"Produkt '{product.name}' mit SKU '{product.sku}' ist bereits vorhanden.")
+            print(f"Product '{product.name}' with SKU '{product.sku}' already exists.")
         else:
             self.inventory[product.sku] = product
-            self.save_inventory()  # Speichern nach Hinzufügen des Produkts
-            print(f"Produkt '{product.name}' zum Inventar hinzugefügt.")
+            self.save_inventory()
+            print(f"Product '{product.name}' added to inventory.")
 
     def remove_product(self, sku):
-        """Entfernen Sie ein Produkt aus dem Inventar."""
+        """Remove a product from the inventory."""
         if sku in self.inventory:
             del self.inventory[sku]
-            self.save_inventory()  # Speichern nach Entfernen des Produkts
-            print(f"Produkt mit SKU '{sku}' aus dem Inventar entfernt.")
+            self.save_inventory()
+            print(f"Product with SKU '{sku}' removed from inventory.")
         else:
-            print(f"Produkt mit SKU '{sku}' nicht gefunden.")
+            print(f"Product with SKU '{sku}' not found.")
 
     def update_product_quantity(self, sku, new_quantity):
-        """Aktualisieren Sie die Menge eines vorhandenen Produkts."""
+        """Update the quantity of an existing product."""
         if sku in self.inventory:
-            self.inventory[sku].update_quantity(new_quantity)
-            self.save_inventory()  # Speichern nach Aktualisierung der Menge
-            print(f"Produkt mit SKU '{sku}' Menge auf {new_quantity} aktualisiert.")
+            if self.inventory[sku].update_quantity(new_quantity):
+                self.save_inventory()
+                print(f"Quantity updated for SKU '{sku}' to {new_quantity}")
         else:
-            print(f"Produkt mit SKU '{sku}' nicht gefunden.")
+            print(f"Product with SKU '{sku}' not found.")
 
     def get_product_info(self, sku):
-        """Produktinformationen nach SKU abrufen."""
+        """Get product information by SKU."""
         if sku in self.inventory:
             return self.inventory[sku].get_product_info()
-        else:
-            return f"Produkt mit SKU '{sku}' nicht gefunden."
+        return f"Product with SKU '{sku}' not found."
 
     def get_total_inventory_value(self):
-        """Berechnen Sie den Gesamtbestandswert, indem Sie die Werte aller Produkte addieren."""
-        total_value = sum(product.unit_price * product.quantity for product in self.inventory.values())
-        return total_value
+        """Calculate the total inventory value."""
+        if not self.inventory:
+            print("Inventory is empty")
+            return 0.0
+        total = sum(product.unit_price * product.quantity for product in self.inventory.values())
+        print(f"Calculated total value: {total}")
+        return total
 
     def search_product(self, search_term):
-        """Suchen Sie nach einem Produkt anhand der SKU oder des Namens."""
+        """Search for a product by SKU or name."""
         results = []
         for product in self.inventory.values():
-            if search_term.lower() in product.name.lower() or search_term.lower() in product.sku.lower():
+            if (search_term.lower() in product.name.lower() or 
+                search_term.lower() in product.sku.lower()):
                 results.append(product.get_product_info())
         if results:
             return "\n\n".join(results)
-        else:
-            return "Keine Produkte gefunden, die dem Suchbegriff entsprechen."
+        return "No products found matching the search term."
 
     def save_inventory(self):
-        """Speichern Sie das Inventar in einer JSON-Datei."""
-        with open(self.file_name, 'w') as file:
-            products_data = []
-            for product in self.inventory.values():
-                product_data = {
-                'name': product.name,
-                'description': product.description, 
-                'sku': product.sku,
-                'quantity': product.quantity,
-                'unit_price': product.unit_price,
-                'purchase_price': product.purchase_price, 
-                'profit_rate': product.profit_rate,  
-                'currency': product.currency  
-                }
-                products_data.append(product_data)
-            json.dump(products_data, file, indent=4)
+        """Save the inventory to a JSON file."""
+        try:
+            with open(self.file_name, 'w', encoding='utf-8') as file:
+                products_data = [{
+                    'name': product.name,
+                    'description': product.description,
+                    'sku': product.sku,
+                    'quantity': product.quantity,
+                    'unit_price': product.unit_price,
+                    'purchase_price': product.purchase_price,
+                    'profit_rate': product.profit_rate,
+                    'currency': product.currency
+                } for product in self.inventory.values()]
+                json.dump(products_data, file, indent=4)
+            print(f"Inventory saved to {self.file_name}")
+        except Exception as e:
+            print(f"Error saving inventory: {e}")
 
     def load_inventory(self):
-        """Laden Sie das Inventar aus der JSON-Datei."""
+        """Load the inventory from the JSON file."""
         try:
-            with open(self.file_name, 'r') as file:
-            # Überprüfen, ob die Datei leer ist
-                file_content = file.read().strip()
-                if not file_content:  # Falls die Datei leer ist
-                    print(f"Die Datei '{self.file_name}' ist leer. Keine Produkte zum Laden.")
+            if not os.path.exists(self.file_name):
+                print(f"File '{self.file_name}' not found, starting with empty inventory")
+                return
+
+            with open(self.file_name, 'r', encoding='utf-8') as file:
+                content = file.read().strip()
+                if not content:
+                    print(f"File '{self.file_name}' is empty")
                     return
 
-            # Wenn die Datei nicht leer ist, laden wir die Daten
-                products_data = json.loads(file_content)
-            
+                products_data = json.loads(content)
+                self.inventory.clear()
                 for prod_data in products_data:
-                    try:
-                        product = Product(
-                            prod_data['name'],
-                            prod_data['description'],
-                            prod_data['sku'],
-                            prod_data['quantity'],
-                            prod_data['unit_price'],
-                            prod_data['purchase_price'],
-                            prod_data['profit_rate'],
-                            prod_data['currency']
-                        )
-                        self.inventory[product.sku] = product
-                    except KeyError as e:
-                        print(f"Fehlender Schlüssel in den Produktdaten: {e}")
-                    except Exception as e:
-                        print(f"Fehler beim Laden eines Produkts: {e}")
+                    product = Product(
+                        prod_data['name'],
+                        prod_data['description'],
+                        prod_data['sku'],
+                        prod_data['quantity'],
+                        prod_data['unit_price'],
+                        prod_data['purchase_price'],
+                        prod_data['profit_rate'],
+                        prod_data['currency']
+                    )
+                    self.inventory[product.sku] = product
+                print(f"Loaded {len(products_data)} products from file")
 
-        except FileNotFoundError:
-        # Wenn die Datei nicht existiert, erstellen wir eine leere Datei
-            print(f"Keine vorherigen Bestandsdaten gefunden, starte neu. Erstelle '{self.file_name}'.")
-            with open(self.file_name, 'w') as file:
-                json.dump([], file)  # Erstelle eine leere JSON-Datei
         except json.JSONDecodeError:
-            print("Fehler beim Dekodieren der JSON-Datei. Möglicherweise ist die Datei beschädigt oder enthält ungültige Daten.")
+            print("Error: Invalid JSON format in inventory file")
         except Exception as e:
-            print(f"Unbekannter Fehler beim Laden der Datei: {e}")
+            print(f"Error loading inventory: {e}")

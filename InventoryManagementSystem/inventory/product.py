@@ -9,35 +9,34 @@ class Product:
         self.profit_rate = profit_rate
         self.currency = currency
 
-    # Method to update the quantity of the product
     def update_quantity(self, new_quantity):
+        """Update the product quantity ensuring it is not negative."""
         if new_quantity >= 0:
             self.quantity = new_quantity
+            return True
         else:
             print("Quantity cannot be negative.")
+            return False
 
-    # Method to update the price of the product
     def update_price(self, new_price):
+        """Update the price of the product ensuring it is not negative."""
         if new_price >= 0:
             self.unit_price = new_price
+            return True
         else:
             print("Price cannot be negative.")
+            return False
 
-    # Method to calculate profit
     def calculate_profit(self):
+        """Calculate profit for this product"""
         return (self.unit_price - self.purchase_price) * self.quantity
 
-    # Method to get a string representation of the product's information
     def get_product_info(self):
-        return f"Name: {self.name}, SKU: {self.sku}, Preis: {self.unit_price} {self.currency}, Lagerbestand: {self.quantity}"
-    
-def get_total_inventory_value(self):
-    """Berechnen Sie den Gesamtbestandswert, indem Sie die Werte aller Produkte addieren."""
-    if not self.inventory:
-        print("Das Inventar ist leer!")
-        return 0  # Gibt 0 zurück, wenn das Inventar leer ist
-
-    total_value = sum(product.unit_price * product.quantity for product in self.inventory.values())
-    
-    print(f"Gesamtwert des Inventars: {total_value} {self.inventory.get(next(iter(self.inventory)))}")  # Debug-Ausgabe
-    return total_value
+        """Returns product details as a formatted string."""
+        return (f"Name: {self.name}\n"
+                f"Description: {self.description}\n"
+                f"SKU: {self.sku}\n"
+                f"Quantity: {self.quantity}\n"
+                f"Unit Price: {self.unit_price} {self.currency}\n"
+                f"Purchase Price: {self.purchase_price} {self.currency}\n"
+                f"Profit Rate: {self.profit_rate}")

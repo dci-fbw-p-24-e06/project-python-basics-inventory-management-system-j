@@ -1,0 +1,302 @@
+[
+    {
+        "name": "Dell Inspiron Laptop",
+        "description": "Dell Inspiron 15.6'' Laptop",
+        "sku": "001",
+        "quantity": 15,
+        "unit_price": 1200,
+        "purchase_price": 900,
+        "profit_rate": 33.33,
+        "currency": "EUR"
+    },
+    {
+        "name": "Apple MacBook Pro",
+        "description": "Apple MacBook Pro 13'' Retina",
+        "sku": "002",
+        "quantity": 100,
+        "unit_price": 1800,
+        "purchase_price": 1400,
+        "profit_rate": 28.57,
+        "currency": "EUR"
+    },
+    {
+        "name": "Lenovo ThinkPad",
+        "description": "Lenovo ThinkPad X1 Carbon",
+        "sku": "003",
+        "quantity": 12,
+        "unit_price": 1500,
+        "purchase_price": 1100,
+        "profit_rate": 36.36,
+        "currency": "EUR"
+    },
+    {
+        "name": "HP Pavilion Laptop",
+        "description": "HP Pavilion 17.3'' Laptop",
+        "sku": "004",
+        "quantity": 20,
+        "unit_price": 1100,
+        "purchase_price": 800,
+        "profit_rate": 37.5,
+        "currency": "EUR"
+    },
+    {
+        "name": "Asus ZenBook",
+        "description": "Asus ZenBook 14'' OLED",
+        "sku": "005",
+        "quantity": 10,
+        "unit_price": 1300,
+        "purchase_price": 950,
+        "profit_rate": 36.84,
+        "currency": "EUR"
+    },
+    {
+        "name": "Samsung Galaxy S23",
+        "description": "Samsung Galaxy S23 Smartphone",
+        "sku": "006",
+        "quantity": 25,
+        "unit_price": 800,
+        "purchase_price": 600,
+        "profit_rate": 33.33,
+        "currency": "EUR"
+    },
+    {
+        "name": "Apple iPhone 15",
+        "description": "Apple iPhone 15 Pro Max",
+        "sku": "007",
+        "quantity": 18,
+        "unit_price": 1200,
+        "purchase_price": 900,
+        "profit_rate": 33.33,
+        "currency": "EUR"
+    },
+    {
+        "name": "Google Pixel 8",
+        "description": "Google Pixel 8 Pro",
+        "sku": "008",
+        "quantity": 15,
+        "unit_price": 900,
+        "purchase_price": 700,
+        "profit_rate": 28.57,
+        "currency": "EUR"
+    },
+    {
+        "name": "Xiaomi 14",
+        "description": "Xiaomi 14 Ultra Smartphone",
+        "sku": "009",
+        "quantity": 22,
+        "unit_price": 700,
+        "purchase_price": 500,
+        "profit_rate": 40.0,
+        "currency": "EUR"
+    },
+    {
+        "name": "OnePlus 12",
+        "description": "OnePlus 12 5G Smartphone",
+        "sku": "010",
+        "quantity": 12,
+        "unit_price": 850,
+        "purchase_price": 650,
+        "profit_rate": 30.77,
+        "currency": "EUR"
+    },
+    {
+        "name": "Dell UltraSharp Monitor",
+        "description": "Dell UltraSharp U2723QE 27'' Monitor",
+        "sku": "011",
+        "quantity": 18,
+        "unit_price": 600,
+        "purchase_price": 450,
+        "profit_rate": 33.33,
+        "currency": "EUR"
+    },
+    {
+        "name": "LG UltraWide Monitor",
+        "description": "LG 34WP65C-B 34'' UltraWide Monitor",
+        "sku": "012",
+        "quantity": 14,
+        "unit_price": 700,
+        "purchase_price": 500,
+        "profit_rate": 40.0,
+        "currency": "EUR"
+    },
+    {
+        "name": "Samsung Odyssey Monitor",
+        "description": "Samsung Odyssey G7 32'' Gaming Monitor",
+        "sku": "013",
+        "quantity": 10,
+        "unit_price": 800,
+        "purchase_price": 600,
+        "profit_rate": 33.33,
+        "currency": "EUR"
+    },
+    {
+        "name": "HP EliteDisplay Monitor",
+        "description": "HP EliteDisplay E243 24'' Monitor",
+        "sku": "014",
+        "quantity": 16,
+        "unit_price": 500,
+        "purchase_price": 350,
+        "profit_rate": 42.86,
+        "currency": "EUR"
+    },
+    {
+        "name": "Acer Predator Monitor",
+        "description": "Acer Predator X27 27'' Gaming Monitor",
+        "sku": "015",
+        "quantity": 9,
+        "unit_price": 900,
+        "purchase_price": 700,
+        "profit_rate": 28.57,
+        "currency": "EUR"
+    },
+    {
+        "name": "Dell Precision Laptop",
+        "description": "Dell Precision 5560 Workstation Laptop",
+        "sku": "016",
+        "quantity": 7,
+        "unit_price": 2000,
+        "purchase_price": 1600,
+        "profit_rate": 25.0,
+        "currency": "EUR"
+    },
+    {
+        "name": "Apple MacBook Air",
+        "description": "Apple MacBook Air 15'' M2",
+        "sku": "017",
+        "quantity": 11,
+        "unit_price": 1400,
+        "purchase_price": 1100,
+        "profit_rate": 27.27,
+        "currency": "EUR"
+    },
+    {
+        "name": "Lenovo IdeaPad",
+        "description": "Lenovo IdeaPad 5 14'' Laptop",
+        "sku": "018",
+        "quantity": 13,
+        "unit_price": 1000,
+        "purchase_price": 750,
+        "profit_rate": 33.33,
+        "currency": "EUR"
+    },
+    {
+        "name": "HP Spectre Laptop",
+        "description": "HP Spectre x360 13'' Convertible",
+        "sku": "019",
+        "quantity": 9,
+        "unit_price": 1600,
+        "purchase_price": 1300,
+        "profit_rate": 23.08,
+        "currency": "EUR"
+    },
+    {
+        "name": "Asus ROG Laptop",
+        "description": "Asus ROG Zephyrus G14 Gaming Laptop",
+        "sku": "020",
+        "quantity": 9,
+        "unit_price": 1700,
+        "purchase_price": 1300,
+        "profit_rate": 30.77,
+        "currency": "EUR"
+    },
+    {
+        "name": "Samsung Galaxy Z Fold5",
+        "description": "Samsung Galaxy Z Fold5 Foldable Smartphone",
+        "sku": "021",
+        "quantity": 20,
+        "unit_price": 1500,
+        "purchase_price": 1200,
+        "profit_rate": 25.0,
+        "currency": "EUR"
+    },
+    {
+        "name": "Apple iPhone 14",
+        "description": "Apple iPhone 14 Plus",
+        "sku": "022",
+        "quantity": 17,
+        "unit_price": 1500.0,
+        "purchase_price": 800,
+        "profit_rate": 25.0,
+        "currency": "EUR"
+    },
+    {
+        "name": "Google Pixel 7",
+        "description": "Google Pixel 7 Pro",
+        "sku": "023",
+        "quantity": 14,
+        "unit_price": 750,
+        "purchase_price": 550,
+        "profit_rate": 36.36,
+        "currency": "EUR"
+    },
+    {
+        "name": "Xiaomi 13",
+        "description": "Xiaomi 13 Pro Smartphone",
+        "sku": "024",
+        "quantity": 19,
+        "unit_price": 650,
+        "purchase_price": 450,
+        "profit_rate": 44.44,
+        "currency": "EUR"
+    },
+    {
+        "name": "OnePlus 11",
+        "description": "OnePlus 11 5G Smartphone",
+        "sku": "025",
+        "quantity": 11,
+        "unit_price": 700,
+        "purchase_price": 500,
+        "profit_rate": 40.0,
+        "currency": "EUR"
+    },
+    {
+        "name": "Dell S Series Monitor",
+        "description": "Dell S2721QS 27'' 4K Monitor",
+        "sku": "026",
+        "quantity": 12,
+        "unit_price": 550,
+        "purchase_price": 400,
+        "profit_rate": 37.5,
+        "currency": "EUR"
+    },
+    {
+        "name": "LG 4K Monitor",
+        "description": "LG 27UN880-B 27'' 4K Monitor",
+        "sku": "027",
+        "quantity": 15,
+        "unit_price": 650,
+        "purchase_price": 500,
+        "profit_rate": 30.0,
+        "currency": "EUR"
+    },
+    {
+        "name": "Samsung ViewFinity Monitor",
+        "description": "Samsung ViewFinity S9 32'' 5K Monitor",
+        "sku": "028",
+        "quantity": 8,
+        "unit_price": 1000,
+        "purchase_price": 800,
+        "profit_rate": 25.0,
+        "currency": "EUR"
+    },
+    {
+        "name": "HP Z Display Monitor",
+        "description": "HP Z24n G3 24'' Monitor",
+        "sku": "029",
+        "quantity": 13,
+        "unit_price": 450,
+        "purchase_price": 300,
+        "profit_rate": 50.0,
+        "currency": "EUR"
+    },
+    {
+        "name": "Acer Nitro Monitor",
+        "description": "Acer Nitro XV272U 27'' Gaming Monitor",
+        "sku": "030",
+        "quantity": 10,
+        "unit_price": 750,
+        "purchase_price": 550,
+        "profit_rate": 36.36,
+        "currency": "EUR"
+    }
+]
